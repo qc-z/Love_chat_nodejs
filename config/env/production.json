@@ -1,0 +1,25 @@
+{
+  "db": "mongodb://localhost:27017/app",
+  "port": 8888,
+  "app": {
+      "name": "development app"
+  },
+  "weixin": {
+    "appid": "wx76d8ba013e7ffa89",
+    "key": "d17dd23e7b5c6b9076ccb37a178b0BB9",
+    "mch_id": "1486310582",
+    "notify_url": "http://39.108.125.46/wxpay/callback"
+  },
+  "fenxiao": {
+    "host": "http://106.75.99.42:8989",
+    "discount": 0.5
+  },
+  "online": true,
+  "mock": "no",
+  "shield": "no",
+  "apnsStatus": true,
+  "codeStateMan": "yes",
+  "codeStateWoman": "yes",
+  "couponEndAt": "2017-09-10T12:00:00.829Z",
+  "SITE_ROOT_URL": "http://lovechat.legle.cc"
+}

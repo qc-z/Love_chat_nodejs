@@ -1,0 +1,261 @@
+'use strict'
+
+const User = require('../app/controllers/user')
+const Admin = require('../app/controllers/admin')
+const Chat = require('../app/controllers/chat')
+const Trace = require('../app/controllers/trace')
+const Alipay = require('../app/controllers/alipay')
+const Weixin = require('../app/controllers/weixin')
+const Apk = require('../app/controllers/apk')
+const Hotload = require('../app/controllers/hotload')
+const Common = require('../app/controllers/common')
+const Script = require('../app/controllers/script')
+
+// agent
+// const Agent = require('../app/bosscontrollers/agent')
+// boss
+const Bosscommon = require('../app/bosscontrollers/common')
+const Bossuser = require('../app/bosscontrollers/user')
+const Bossapk = require('../app/bosscontrollers/apk')
+const Bosschat = require('../app/bosscontrollers/chat')
+const Bosstrace = require('../app/bosscontrollers/trace')
+const Bossalipay = require('../app/bosscontrollers/alipay')
+
+module.exports = function(router) {
+
+	// user
+	router.get('/sendVerifyCode', User.sendVerify)
+	router.post('/userSignupPhone', User.signupPhone)
+	router.post('/userLogin', User.login)
+	router.post('/forgetPwd', User.forgetPwd)
+	router.post('/changePwd', User.changePwd)
+	router.get('/getState', User.loginState)
+	router.get('/getInfo', User.getUserInfo)
+	router.get('/getOwerInfo', User.getOwerInfo)
+	router.get('/getsts', User.getsts)
+	router.get('/aliyunToken', User.aliyunToken)
+	router.post('/editInfo', User.editUserInfo)
+	router.get('/index', User.index)
+	router.get('/getAppLists', User.getAppLists)
+	router.post('/searchLists', User.searchLists)
+	router.get('/getOneList', User.getOneList)
+	router.post('/uploadPub', User.uploadPub)
+	router.post('/delePub', User.delePub)
+	router.post('/delePri', User.delePri)
+	router.post('/photoPri', User.photoPri)
+	router.post('/avatar', User.avatar)
+	router.post('/location', User.location)
+	router.get('/getCoupon', User.getCoupon)
+	router.post('/faceTest', User.faceTest)
+	router.post('/signupWeixin', User.signupWeixin)
+
+	
+	// Admin
+	router.get('/findByNumber', Admin.findByNumber)
+	router.post('/sendRejust', Admin.sendRejust)
+	router.post('/findAdmin', Admin.findAdmin)
+	router.post('/isPass', Admin.isPass)
+	router.get('/getLists', Admin.getAdminLists)
+	router.post('/adminUserLogin', Admin.adminLogin)
+	router.get('/fadeAccount', Admin.fadeAccount)
+	router.get('/mockUserList', Admin.mockUserList)
+	router.get('/normalList', Admin.normalList)
+	router.post('/addMockUser', Admin.addMockUser)
+	router.post('/editMockUser', Admin.editMockUser)
+	router.get('/payList', Admin.payList)
+	router.post('/payDetail', Admin.payDetail)
+	router.get('/txtToSensitive', Admin.txtToSensitive)
+	router.post('/addSensitive', Admin.addSensitive)
+	router.post('/editSensitive', Admin.editSensitive)
+	router.get('/sensitiveList', Admin.sensitiveList)
+	router.get('/mockChatList', Admin.mockChatList)
+	router.get('/mockChatbox', Admin.mockChatbox)
+	router.get('/mockReadMsg', Admin.mockReadMsg)
+	router.post('/mockSendMsg', Admin.mockSendMsg)
+	router.post('/addAdminChat', Admin.addAdminChat)
+	router.post('/adminReplyPhotoPri', Admin.adminReplyPhotoPri)
+	router.get('/couponList', Admin.couponList)
+	router.post('/editCoupon', Admin.editCoupon)
+	router.post('/addCoupon', Admin.addCoupon)
+	router.get('/getDate', Admin.getDate)
+	router.get('/getMoney', Admin.getMoney)
+	router.get('/getSexTotal', Admin.getSexTotal)
+	router.get('/getAge', Admin.getAge)
+	router.get('/getAddr', Admin.getAddr)
+	router.get('/getiveOrder', Admin.getiveOrder)
+	router.get('/auditorLists', Admin.auditorLists)
+	router.get('/userLists', Admin.userLists)
+	router.post('/setActive', Admin.setActive)
+	router.post('/push', Admin.push)
+	router.get('/boss/getAdminWish', Admin.getAdminWish)
+	router.post('/boss/findWish', Admin.findWish)
+	router.post('/boss/wishPass', Admin.wishPass)
+	router.post('/boss/sendWishRejust', Admin.sendWishRejust)
+
+	// chat
+	router.get('/jpushtest', Chat.index)
+	router.post('/sendmsg', Chat.sendmsg)
+	router.get('/readMsg', Chat.readMsg)
+	router.get('/getMsgs', Chat.getMsgs)
+	router.post('/replyPhotoPri', Chat.replyPhotoPri)
+	router.post('/requirePhotoPri', Chat.requirePhotoPri)
+
+	// trace
+	router.post('/userCare', Trace.care)
+	router.post('/uncare', Trace.uncare)
+	router.post('/userHate', Trace.hate)
+	router.post('/unHate', Trace.unHate)
+	router.post('/careSet', Trace.careSet)
+	router.post('/soundCare', Trace.soundCare)
+	router.post('/soundChat', Trace.soundChat)
+	router.post('/setAvatar', Trace.setAvatar)
+	router.post('/listSet', Trace.listSet)
+	router.post('/feedback', Trace.feedback)
+	router.get('/careList', Trace.careList)
+	router.get('/browseList', Trace.browseList)
+	router.get('/hateList', Trace.hateList)
+	router.get('/ranking', Trace.ranking)
+	router.post('/report', Trace.report)
+	router.post('/delBrowse', Trace.delBrowse)
+	router.post('/delBrowsed', Trace.delBrowsed)
+
+
+	// alipay
+	router.post('/creatOrder', Alipay.creatOrder)
+	router.post('/signVerify', Alipay.signVerify)
+	router.post('/alipay/callback', Alipay.payCallback)
+
+	// weixin
+	router.post('/weixin/creatOrder', Weixin.creatOrder)
+	router.post('/weixin/signVerify', Weixin.signVerify)
+	router.post('/wxpay/callback', Weixin.payCallback)
+	// applepay
+	router.post('/creatApple', Alipay.creatApple)
+	router.post('/appleVerify', Alipay.appleVerify)
+
+	// apk
+	router.get('/getApk', Apk.getApk)
+	router.get('/getApkList', Apk.getApkList)
+	router.post('/latestVersion', Apk.latestVersion)
+	router.post('/editApk', Apk.editApk)
+	router.post('/addApk', Apk.addApk)
+	router.post('/apkInfo', Apk.apkInfo)
+
+	// hotload
+	router.get('/hotloadInfo', Hotload.hotloadInfo)
+	router.get('/getHotloadList', Hotload.getHotloadList)
+	router.post('/editHotload', Hotload.editHotload)
+	router.post('/addHotload', Hotload.addHotload)
+
+	// common
+	router.get('/noticeList', Common.noticeList)
+	router.get('/boss/noticeList', Bosscommon.noticeList)
+	router.get('/boss/unnotice', Bosscommon.unnotice)
+
+	// script
+	router.get('/script/faceTest', Script.faceTest)
+	// router.get('/script/exportCoupon', Script.exportCoupon)
+
+	//bossuser
+	router.post('/boss/location', Bossuser.location)
+	router.get('/boss/sendMailCode', Bossuser.sendMailCode)
+	router.get('/boss/sendVerifyCode', Bossuser.sendVerify)
+	router.post('/boss/userSignupPhone', Bossuser.signupPhone)
+	router.post('/boss/userSignupEmail', Bossuser.signupEmail)
+	router.post('/boss/userLogin', Bossuser.login)
+	router.post('/boss/faceTest', Bossuser.faceTest)
+	router.post('/boss/faceTestWeixin', Bossuser.faceTestWeixin)
+	router.post('/boss/goDate', Bossuser.goDate)
+	router.post('/boss/forgetPwd', Bossuser.forgetPwd)
+	router.get('/boss/getInfo', Bossuser.getUserInfo)
+	router.get('/boss/getAppLists', Bossuser.getAppLists)
+	router.post('/boss/searchLists', Bossuser.searchLists)
+	router.get('/boss/getsts', Bossuser.getsts)
+	router.post('/boss/editInfo', Bossuser.editUserInfo)
+	router.post('/boss/postWish', Bossuser.postWish)
+	router.post('/boss/editWish', Bossuser.editWish)
+	router.get('/boss/getWish', Bossuser.getWish)
+	router.get('/boss/delWish', Bossuser.delWish)
+	router.get('/boss/getSelfWish', Bossuser.getSelfWish)
+	router.post('/boss/takeLove', Bossuser.takeLove)
+	router.post('/boss/shareWish', Bossuser.shareWish)
+	router.post('/boss/uploadPub', Bossuser.uploadPub)
+	router.post('/boss/delePub', Bossuser.delePub)
+	router.post('/boss/delePri', Bossuser.delePri)
+	router.post('/boss/photoPri', Bossuser.photoPri)
+	router.get('/boss/priLists', Bossuser.priLists)
+	router.post('/boss/cancelPri', Bossuser.cancelPri)
+	router.get('/boss/getCoupon', Bossuser.getCoupon)
+	router.post('/boss/avatar', Bossuser.avatar)
+	router.get('/boss/getOtherWish', Bossuser.getOtherWish)
+	router.post('/boss/changePwd', Bossuser.changePwd)
+	router.get('/boss/index', Bossuser.index)
+	router.post('/boss/signupWeixin', Bossuser.signupWeixin)
+	
+
+	//bossapk
+	router.post('/boss/apkInfo', Bossapk.apkInfo)
+	router.get('/boss/getApkList', Apk.getApkList)
+	router.post('/boss/latestVersion', Apk.latestVersion)
+	router.post('/boss/editApk', Apk.editApk)
+	router.post('/boss/addApk', Apk.addApk)
+	router.post('/boss/apkInfo', Apk.apkInfo)
+
+	// bosschat
+	router.get('/boss/getMsgs', Bosschat.getMsgs)
+	router.get('/boss/readMsg', Bosschat.readMsg)
+	router.post('/boss/sendMsg', Bosschat.sendMsg)
+	router.post('/boss/delMsg', Bosschat.delMsg)
+	router.post('/boss/msgReaded', Bosschat.msgReaded)
+	router.post('/boss/replyPhotoPri', Bosschat.replyPhotoPri)
+	router.post('/boss/requirePhotoPri', Bosschat.requirePhotoPri)
+	// bosscommon
+	router.post('/boss/heartbeat', Bosscommon.heartbeat)
+	router.post('/boss/noticedel', Bosscommon.noticedel)
+	router.get('/boss/logout', Bosscommon.logout)
+	router.get('/boss/getOnline', Bosscommon.getOnline)
+	router.get('/boss/paylist', Bosscommon.paylist)
+
+		// bosstrace
+	router.post('/boss/userCare', Bosstrace.care)
+	router.post('/boss/uncare', Bosstrace.uncare)
+	router.post('/boss/userHate', Bosstrace.hate)
+	router.post('/boss/unHate', Bosstrace.unHate)
+	router.post('/boss/careSet', Bosstrace.careSet)
+	router.post('/boss/soundCare', Bosstrace.soundCare)
+	router.post('/boss/soundChat', Bosstrace.soundChat)
+	router.post('/boss/setAvatar', Bosstrace.setAvatar)
+	router.post('/boss/listSet', Bosstrace.listSet)
+	router.post('/boss/feedback', Bosstrace.feedback)
+	router.get('/boss/careList', Bosstrace.careList)
+	router.get('/boss/browseList', Bosstrace.browseList)
+	router.get('/boss/hateList', Bosstrace.hateList)
+	router.get('/boss/ranking', Bosstrace.ranking)
+	router.post('/boss/report', Bosstrace.report)
+	router.post('/boss/delBrowse', Bosstrace.delBrowse)
+	router.post('/boss/delBrowsed', Bosstrace.delBrowsed)
+
+
+	// bossalipay
+	router.post('/boss/creatOrder', Bossalipay.creatOrder)
+	router.post('/boss/signVerify', Bossalipay.signVerify)
+	// applepay boss
+	router.post('/boss/creatApple', Bossalipay.creatApple)
+	router.post('/boss/appleVerify', Bossalipay.appleVerify)
+	// gpay boss
+	router.post('/boss/creatGpay', Bossalipay.creatGpay)
+	router.post('/boss/gpayVerify', Bossalipay.gpayVerify)
+
+
+	// agent
+	// router.post('/agent/addAgent', Agent.addAgent)
+	// router.post('/agent/approval', Agent.approval)
+	// router.post('/agent/addAgentByBoss', Agent.addAgentByBoss)
+	// router.post('/agent/addByChannel', Agent.addByChannel)
+	// router.get('/agent/incomeag', Agent.incomeag)
+	// router.get('/agent/agentusers', Agent.agentusers)
+	// router.post('/agent/mngagentSignup', Agent.mngagentSignup)
+	// router.post('/agent/mngagentLogin', Agent.mngagentLogin)
+
+
+}

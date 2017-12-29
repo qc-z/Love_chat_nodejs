@@ -1,0 +1,43 @@
+{
+    "name" : {
+        "nickname":10,
+        "addr":10,
+        "age":5,
+        "lovePrice":5,
+        "loveDate":5,
+        "sports":3,
+        "tour":3,
+        "body":4,
+        "height":5,
+        "drink":5,
+        "smoking":4,
+        "education":4,
+        "work":5,
+        "character":1,
+        "selfInfo":1,
+        "iNeed":6,
+        "afford":6,
+        "hopeful":6,
+        "looking": 18,
+        "avatar": 12
+    },
+    "boss" : {
+        "nickname":10,
+        "addr":10,
+        "age":8,
+        "lovePrice":8,
+        "loveDate":8,
+        "body":4,
+        "height":5,
+        "drink":5,
+        "smoking":4,
+        "education":4,
+        "work":8,
+        "character":1,
+        "selfInfo":1,
+        "iNeed":6,
+        "hopeful":6,
+        "looking": 18,
+        "avatar": 12
+    }
+}
